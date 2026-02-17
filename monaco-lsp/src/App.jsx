@@ -19,17 +19,17 @@ function App() {
       automaticLayout: true,
     });
 
-    // Connect WebSocket
+ 
     const socket = new WebSocket("ws://localhost:3001");
     socketRef.current = socket;
 
     socket.onopen = () => {
       console.log("Connected to backend");
 
-      // Initialize Pyright LSP
+    
       socket.send(JSON.stringify({ type: "init" }));
 
-      // Open initial file
+     
       socket.send(
         JSON.stringify({
           type: "didOpen",

@@ -16,25 +16,24 @@ wss.on("connection", (socket) => {
   console.log("Client connected");
 
   // Start Pyright LSP
-  const pyright = spawn("powershell.exe", [
-    "-ExecutionPolicy",
-    "Bypass",
-    "-File",
-    "C:\\Users\\Pratham\\AppData\\Roaming\\npm\\pyright-langserver.ps1",
-    "--stdio"
-  ]);
+  // const pyright = spawn("powershell.exe", [
+  //   "-ExecutionPolicy",
+  //   "Bypass",
+  //   "-File",
+  //   "C:\\Users\\Pratham\\AppData\\Roaming\\npm\\pyright-langserver.ps1",
+  //   "--stdio"
+  // ]);
 
 
-  // const pyright = spawn("npx", ["pyright-langserver", "--stdio"], {
-  //   shell: true, // important on Windows
-  // });
+  const pyright = spawn("npx", ["pyright-langserver", "--stdio"], {
+    // shell: true, 
+  });
 
 
 
 
   let buffer = "";
 
-  // Client → Pyright
   socket.on("message", (message) => {
     function sendToPyright(obj) {
       const json = JSON.stringify(obj);
@@ -44,7 +43,7 @@ wss.on("connection", (socket) => {
 
   });
 
-  // Pyright → Client
+ 
   pyright.stdout.on("data", (data) => {
     console.log("Raw from Pyright:", data.toString());
 

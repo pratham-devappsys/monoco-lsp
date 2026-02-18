@@ -2,19 +2,19 @@ const { spawn } = require("child_process");
 
 const fs = require('fs').promises;
 
-async function createFile() {
-    try {
-        await fs.writeFile('', 'Hello, Node.js!', 'utf8');
-        console.log('File "greetings.txt" created successfully');
-    } catch (err) {
-        console.error('Error creating file:', err);
-    }
-}
+// async function createFile() {
+//     try {
+//         await fs.writeFile('file:///C:/Users/Pratham/Desktop/test/main.c', '', 'utf8');
+//         console.log('File "greetings.txt" created successfully');
+//     } catch (err) {
+//         console.error('Error creating file:', err);
+//     }
+// }
+//
+// createFile();
 
-createFile();
 
-
-const clangd = spawn("C:\\Program Files\\LLVM\\bin\\clangd.exe", ["--compile-commands-dir=.", "--background-index"], {
+const clangd = spawn("C:\\Program Files\\LLVM\\bin\\clangd.exe", ["--compile-commands-dir=C:/Users/Pratham/Desktop/test" ,"--background-index"], {
     shell: false
 });
 
@@ -101,13 +101,32 @@ async function run() {
 
     sendMessage({
         jsonrpc: "2.0",
+        method: "textDocument/didChange",
+        params: {
+            textDocument: {
+                uri: "file:///C:/Users/Pratham/Desktop/test/main.c",
+
+                version: 2,
+
+            }, contentChanges: [
+                {
+                    text: "#"
+                }
+            ]
+        }
+    });
+
+    await sleep(500);
+
+    sendMessage({
+        jsonrpc: "2.0",
         id: 2,
         method: "textDocument/completion",
         params: {
             textDocument: {
                 uri: "file:///C:/Users/Pratham/Desktop/test/main.c"
             },
-            position: { line: 1, character: 20 }
+            position: { line: 0, character: 1 }
         }
     });
 

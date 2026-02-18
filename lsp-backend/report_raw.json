@@ -1,0 +1,75 @@
+{
+    "version": "1.1.408",
+    "time": "1771400023399",
+    "generalDiagnostics": [
+        {
+            "file": "d:\\monoco-lsp\\lsp-backend\\dummy_test.py",
+            "severity": "warning",
+            "message": "Expression value is unused",
+            "range": {
+                "start": {
+                    "line": 1,
+                    "character": 4
+                },
+                "end": {
+                    "line": 1,
+                    "character": 9
+                }
+            },
+            "rule": "reportUnusedExpression"
+        },
+        {
+            "file": "d:\\monoco-lsp\\lsp-backend\\dummy_test.py",
+            "severity": "error",
+            "message": "Statements must be separated by newlines or semicolons",
+            "range": {
+                "start": {
+                    "line": 1,
+                    "character": 9
+                },
+                "end": {
+                    "line": 1,
+                    "character": 22
+                }
+            }
+        },
+        {
+            "file": "d:\\monoco-lsp\\lsp-backend\\dummy_test.py",
+            "severity": "error",
+            "message": "Statements must be separated by newlines or semicolons",
+            "range": {
+                "start": {
+                    "line": 1,
+                    "character": 22
+                },
+                "end": {
+                    "line": 1,
+                    "character": 23
+                }
+            }
+        },
+        {
+            "file": "d:\\monoco-lsp\\lsp-backend\\dummy_test.py",
+            "severity": "error",
+            "message": "Expected expression",
+            "range": {
+                "start": {
+                    "line": 1,
+                    "character": 22
+                },
+                "end": {
+                    "line": 1,
+                    "character": 23
+                }
+            }
+        }
+    ],
+    "summary": {
+        "filesAnalyzed": 1,
+        "errorCount": 3,
+        "warningCount": 1,
+        "informationCount": 0,
+        "timeInSec": 0.454
+    }
+}
+

@@ -20,20 +20,33 @@ wss.on("connection", (socket) => {
   //   "-ExecutionPolicy",
   //   "Bypass",
   //   "-File",
-  //   "C:\\Users\\Pratham\\AppData\\Roaming\\npm\\pyright-langserver.ps1",
+  //   "C:\\Users\\Pratham\\AppData\\Roaming\\npm\\pyright-langserver.cmd",
   //   "--stdio"
   // ]);
 
 
-  const pyright = spawn("npx", ["pyright-langserver", "--stdio"], {
-    // shell: true, 
-  });
+  // const pyright = spawn( "C:\\Users\\Pratham\\AppData\\Roaming\\npm\\pyright-langserver.cmd", "--stdio", {
+  //   shell: true, // important on Windows
+  // });
+
+  // const { spawn } = require("child_process");
+
+const pyright = spawn(
+  "C:\\Users\\Pratham\\AppData\\Roaming\\npm\\pyright-langserver.cmd",
+  ["--stdio"],
+  { shell: true }
+);
+
+// lsp.stdout.on("data", (data) => console.log(data.toString()));
+// lsp.stderr.on("data", (data) => console.error(data.toString()));
+
 
 
 
 
   let buffer = "";
 
+  // Client → Pyright
   socket.on("message", (message) => {
     function sendToPyright(obj) {
       const json = JSON.stringify(obj);
@@ -43,7 +56,7 @@ wss.on("connection", (socket) => {
 
   });
 
- 
+  // Pyright → Client
   pyright.stdout.on("data", (data) => {
     console.log("Raw from Pyright:", data.toString());
 
@@ -76,10 +89,10 @@ wss.on("connection", (socket) => {
     console.error("Pyright Error:", data.toString());
   });
 
-  socket.on("close", () => {
-    console.log("Client disconnected");
-    pyright.kill();
-  });
+  // socket.on("close", () => {
+  //   console.log("Client disconnected");
+  //   pyright.kill();
+  // });
 
   pyright.on("close", (code) => {
     console.log("Pyright exited with code", code);

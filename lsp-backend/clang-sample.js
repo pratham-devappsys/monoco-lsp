@@ -92,7 +92,7 @@ async function run() {
                 uri: "file:///C:/Users/Pratham/Desktop/test/main.c",
                 languageId: "c",
                 version: 1,
-                text: "#include <stdio.h>\nint main() { printf(\"Hello\"); return 0; }"
+                text: "#include <stdio.h>\nint mn() { printf(\"Hello\"); return 0; }"
             }
         }
     });

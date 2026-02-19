@@ -8,7 +8,7 @@ const code = `
 
 int main() {
     printf("Hello, LSP!\\n");
-    return 0;
+    ret  ;
 }
 `;
 
@@ -23,9 +23,6 @@ const lsp = spawn("clangd", ["--compile-commands-dir=.", "--log=verbose"], {
 
 lsp.on("error", (err) => console.error("Failed to start clangd:", err));
 
-// --------------------
-// 3. Send JSON-RPC messages to LSP
-// --------------------
 function sendMessage(msg) {
     const json = JSON.stringify(msg);
     const content = `Content-Length: ${Buffer.byteLength(json, "utf8")}\r\n\r\n${json}`;
